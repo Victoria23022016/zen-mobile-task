@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --background: #ffffff;
+  --primary: #435261;
+  --secondary: #8676b6;
+  --link: #2d6fb1;
+  --main-font: 14px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.smallcontainer {
+  width: 500px;
+  height: 300px;
+  border: red 2px solid;
+}
