@@ -1,8 +1,11 @@
+@import "./normalize.css";
+
 :root {
   --background: #ffffff;
   --primary: #435261;
   --secondary: #8676b6;
   --link: #2d6fb1;
+  --error: #ec1b2b;
   --main-font: 14px;
 }
 
@@ -11,8 +14,122 @@
   margin: 0 auto;
 }
 
-.smallcontainer {
-  width: 500px;
-  height: 300px;
-  border: red 2px solid;
+.content {
+  padding-left: 50px;
+}
+
+.button {
+  font-size: var(--main-font);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.header {
+  background-color: var(--secondary);
+  padding-top: 20px;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  font-size: var(--main-font);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.text_large {
+  font-size: 20px;
+}
+
+.text_small {
+  font-size: 12px;
+}
+
+.text_linked {
+  color: var(--link);
+}
+
+.main {
+  display: flex;
+}
+
+.menu {
+  box-shadow: 0 5px 10px var(--primary);
+}
+
+.menu__inner {
+  padding: 0 50px 50px 165px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu__title {
+  padding-left: 10px;
+}
+
+.menu__item {
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.form {
+  background: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+  padding: 10px;
+  font-size: var(--main-font);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+}
+
+.form_profile {
+  width: 600px;
+}
+
+.form__control {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 15px;
+}
+
+.form__input {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.form__input_profile {
+  border-radius: 5px;
+  padding: 5px;
+  width: 300px;
+}
+
+.form__input-wrapper {
+  display: flex;
+}
+
+.form__error {
+  padding-left: 5px;
+  color: var(--error);
+}
+
+.form__button {
+  margin-bottom: 15px;
+  width: 100px;
+  align-self: center;
 }

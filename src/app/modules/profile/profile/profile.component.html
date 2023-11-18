@@ -1,1 +1,100 @@
-<p>profile works!</p>
+<h1 class="text text_large">Profile</h1>
+<form [formGroup]="form" class="form form_profile">
+  <div class="form__control">
+    <label class="text">Email</label>
+    <input
+      class="form__input form__input_profile"
+      type="text"
+      value="{{ email }}"
+      readonly
+    />
+  </div>
+  <div class="form__control">
+    <label class="text">First name</label>
+    <div class="form__input-wrapper">
+      <input
+        class="form__input form__input_profile"
+        type="text"
+        placeholder="First name"
+        formControlName="firstName"
+      />
+      <ng-container
+        *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched"
+      >
+        <span
+          *ngIf="form.get('firstName')?.errors?.['required']"
+          class="text text_small form__error"
+          >the graph must be filled</span
+        >
+        <span
+          *ngIf="form.get('firstName')?.errors?.['max']"
+          class="text text_small form__error"
+          >no more than 255 symbols</span
+        >
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="form__control">
+    <label class="text">Last name</label>
+    <div>
+      <input
+        class="form__input form__input_profile"
+        type="text"
+        placeholder="Last name"
+        formControlName="lastName"
+      />
+      <ng-container
+        *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
+      >
+        <span
+          *ngIf="form.get('lastName')?.errors?.['required']"
+          class="text text_small form__error"
+          >the graph must be filled</span
+        >
+        <span
+          *ngIf="form.get('lastName')?.errors?.['max']"
+          class="text text_small form__error"
+          >no more than 255 symbols</span
+        >
+      </ng-container>
+    </div>
+  </div>
+  <div class="form__control">
+    <label class="text">Phone number</label>
+    <div>
+      <input
+        placeholder="+7"
+        type="tel"
+        class="form__input form__input_profile"
+        formControlName="phoneNumber"
+      />
+      <ng-container
+        *ngIf="
+          form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched
+        "
+      >
+        <span class="text text_small form__error">10 symbols</span>
+      </ng-container>
+    </div>
+  </div>
+  <div class="form__control">
+    <label class="text">Website URL</label>
+    <div>
+      <input
+        class="form__input form__input_profile"
+        type="url"
+        placeholder="URL"
+        formControlName="url"
+      />
+      <ng-container
+        *ngIf="form.get('url')?.invalid && form.get('url')?.touched"
+      >
+        <span class="text text_small form__error">URL is not correct</span>
+      </ng-container>
+    </div>
+  </div>
+  <button class="button form__button" type="submit" (click)="submit()">
+    Submit
+  </button>
+</form>
