@@ -13,4 +13,8 @@ export class ProfileService {
   updateData(): Subject<ProfileData> {
     return this.formData$;
   }
+
+  checkData(formData: ProfileData): boolean {
+    return formData.firstName.length === 1 ? false : true;
+  }
 }

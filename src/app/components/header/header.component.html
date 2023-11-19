@@ -3,12 +3,21 @@
     <div class="header__inner">
       <div class="header__info">
         <p class="text">First name: {{ firstName }}</p>
-        <!--проверка на существование, или заглушка-->
         <p class="text">Last name: {{ lastName }}</p>
-        <p class="text text_linked">Go to profile: {{ webSite }}</p>
-        <!--сделать routerlink?-->
+        <a class="text text_linked" href="{{ webSite }}">Go to profile</a>
       </div>
-      <p class="text">Space for message</p>
+      <ng-container *ngIf="profileDataState; else error">
+        <div class="message message_state">
+          <p class="text">Profile has been succesfully updated</p>
+        </div>
+      </ng-container>
+      <ng-template #error>
+        <div class="message message_state">
+          <button class="button message__button text_small">X</button>
+          <p class="text">Profile has not been updated</p>
+        </div>
+      </ng-template>
+
       <p class="text text_linked"><a>Logout</a></p>
     </div>
   </div>

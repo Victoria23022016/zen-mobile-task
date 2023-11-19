@@ -1,7 +1,9 @@
-<ng-container *ngIf="">
-  <app-header></app-header>
+<ng-container>
+  <app-header
+    [profileData]="profileData"
+    [profileDataState]="profileDataState"
+  ></app-header>
 </ng-container>
-
 <main class="main">
   <div class="menu">
     <div class="menu__inner">

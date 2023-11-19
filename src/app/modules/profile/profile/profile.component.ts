@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Params } from '@angular/router';
 import { ProfileValidators } from './profile.validators';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileData } from 'src/app/models/models';
@@ -13,7 +12,7 @@ import { ProfileData } from 'src/app/models/models';
 export class ProfileComponent implements OnInit {
   form: FormGroup;
   formData: ProfileData;
-  email: string = 'svi.victoria@';
+  email: string = 'svi.victoria@'; //не забыть поменять
 
   constructor(private readonly _profileService: ProfileService) {}
 
@@ -26,8 +25,7 @@ export class ProfileComponent implements OnInit {
       lastName: new FormControl('', [Validators.required, Validators.max(255)]),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.max(10),
-        Validators.min(10),
+        ProfileValidators.phoneValidator,
       ]),
       url: new FormControl('', ProfileValidators.urlValidator),
     });

@@ -9,8 +9,17 @@ import { ProfileData } from 'src/app/models/models';
 })
 export class HeaderComponent {
   @Input() profileData: ProfileData;
+  @Input() profileDataState: boolean;
 
   firstName: string = '-';
   lastName: string = '-';
   webSite: string = '-';
+
+  ngDoCheck() {
+    if (this.profileData !== undefined && this.profileDataState !== false) {
+      this.firstName = this.profileData.firstName;
+      this.lastName = this.profileData.lastName;
+      this.webSite = this.profileData.url;
+    }
+  }
 }

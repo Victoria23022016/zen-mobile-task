@@ -94,7 +94,12 @@
       </ng-container>
     </div>
   </div>
-  <button class="button form__button" type="submit" (click)="submit()">
+  <button
+    class="button form__button"
+    type="submit"
+    (click)="submit()"
+    [disabled]="form.invalid"
+  >
     Submit
   </button>
 </form>
