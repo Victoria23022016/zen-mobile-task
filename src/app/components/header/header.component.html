@@ -6,18 +6,13 @@
         <p class="text">Last name: {{ lastName }}</p>
         <a class="text text_linked" href="{{ webSite }}">Go to profile</a>
       </div>
-      <ng-container *ngIf="profileDataState; else error">
-        <div class="message message_state">
-          <p class="text">Profile has been succesfully updated</p>
-        </div>
-      </ng-container>
-      <ng-template #error>
+
+      <ng-container *ngIf="profileDataError">
         <div class="message message_state">
           <button class="button message__button text_small">X</button>
           <p class="text">Profile has not been updated</p>
         </div>
-      </ng-template>
-
+      </ng-container>
       <p class="text text_linked"><a>Logout</a></p>
     </div>
   </div>

@@ -101,6 +101,10 @@
   width: 600px;
 }
 
+.form_auth {
+  width: 400px;
+}
+
 .form__control {
   display: flex;
   flex-direction: column;

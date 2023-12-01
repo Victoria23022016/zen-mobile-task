@@ -20,9 +20,12 @@ export class ProfileComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
-        Validators.max(255),
+        Validators.maxLength(255),
       ]),
-      lastName: new FormControl('', [Validators.required, Validators.max(255)]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(255),
+      ]),
       phoneNumber: new FormControl('', [
         Validators.required,
         ProfileValidators.phoneValidator,
@@ -33,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   submit(): void {
     this.formData = { ...this.form.value };
-    // this.form.reset();
     this._profileService.sendData(this.formData);
+    this.form.reset();
   }
 }

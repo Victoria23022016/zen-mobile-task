@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="text text_large">Registration:</h1>
+  <form [formGroup]="form" class="form form_auth">
+    <div class="form__control">
+      <label class="text">Email:</label>
+      <input class="form__input" type="text" formControlName="email" />
+    </div>
+    <div class="form__control">
+      <label class="text">Password:</label>
+      <input class="form__input" type="password" formControlName="password" />
+    </div>
+    <button
+      class="button form__button"
+      (click)="submit()"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+  </form>
+  <ng-container *ngIf="(this._authService.auth$ | async) === false">
+    <p class="text">Registration failed!</p>
+  </ng-container>
+</div>

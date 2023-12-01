@@ -1,28 +1,6 @@
-<ng-container>
-  <app-header
-    [profileData]="profileData"
-    [profileDataState]="profileDataState"
-  ></app-header>
-</ng-container>
+<app-header [profileData]="profileData"></app-header>
 <main class="main">
-  <div class="menu">
-    <div class="menu__inner">
-      <h1 class="text text_large menu__title">Menu:</h1>
-      <a class="text menu__item" [routerLink]="['/']" appHover>Home</a>
-      <a class="text menu__item" [routerLink]="['/inventory']" appHover
-        >Inventory</a
-      >
-      <a class="text menu__item" [routerLink]="['/reports']" appHover
-        >Reports</a
-      >
-      <a class="text menu__item" [routerLink]="['/billing']" appHover
-        >Billing</a
-      >
-      <a class="text menu__item" [routerLink]="['/profile']" appHover
-        >Profile</a
-      >
-    </div>
-  </div>
+  <app-menu></app-menu>
   <div class="content">
     <router-outlet></router-outlet>
   </div>

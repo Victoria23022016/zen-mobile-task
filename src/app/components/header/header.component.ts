@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
 import { ProfileData } from 'src/app/models/models';
 
 @Component({
@@ -8,18 +9,17 @@ import { ProfileData } from 'src/app/models/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Input() profileData: ProfileData;
-  @Input() profileDataState: boolean;
+  @Input()
+  set profileData(profileData: ProfileData | undefined) {
+    if (profileData) {
+      this.firstName = profileData.firstName;
+      this.lastName = profileData.lastName;
+      this.webSite = profileData.url;
+    }
+  }
 
   firstName: string = '-';
   lastName: string = '-';
   webSite: string = '-';
-
-  ngDoCheck() {
-    if (this.profileData !== undefined && this.profileDataState !== false) {
-      this.firstName = this.profileData.firstName;
-      this.lastName = this.profileData.lastName;
-      this.webSite = this.profileData.url;
-    }
-  }
+  profileDataError: boolean = false;
 }
