@@ -1,14 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ProfileData } from 'src/app/models/models';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit, OnDestroy {
   profileData: ProfileData;
   profileDataUpdate: boolean;
 
@@ -18,5 +22,9 @@ export class MainPageComponent {
     this._profileService.formData$.subscribe(
       (profileData) => (this.profileData = profileData)
     );
+  }
+
+  ngOnDestroy(): void {
+    this._profileService.formData$.unsubscribe();
   }
 }

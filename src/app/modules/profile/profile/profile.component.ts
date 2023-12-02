@@ -7,12 +7,11 @@ import { ProfileData } from 'src/app/models/models';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
   form: FormGroup;
   formData: ProfileData;
-  email: string = 'svi.victoria@'; //не забыть поменять
+  email: string | null = window.localStorage.key(0);
 
   constructor(private readonly _profileService: ProfileService) {}
 

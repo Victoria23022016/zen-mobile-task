@@ -4,6 +4,13 @@
     <div class="form__control">
       <label class="text">Email:</label>
       <input class="form__input" type="text" formControlName="email" />
+      <ng-container
+        *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+      >
+        <span class="text text_small form__error"
+          >This email is already booked!</span
+        >
+      </ng-container>
     </div>
     <div class="form__control">
       <label class="text">Password:</label>
@@ -17,7 +24,4 @@
       Submit
     </button>
   </form>
-  <ng-container *ngIf="(this._authService.auth$ | async) === false">
-    <p class="text">Registration failed!</p>
-  </ng-container>
 </div>

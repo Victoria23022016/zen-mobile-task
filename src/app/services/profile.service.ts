@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { ProfileData } from '../models/models';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
   formData$: Subject<ProfileData> = new Subject();
 
-  sendData(formData: ProfileData): boolean {
-    this.formData$.next(formData);
+  constructor(private readonly _notification: NzNotificationService) {}
 
+  sendData(formData: ProfileData): void {
     if (formData.firstName.length === 1) {
-      return true; //прописать добавление текста в сообщение
+      this._notification.create(
+        'warning',
+        '',
+        'Данные профиля не были обновлены!'
+      );
     } else {
-      return false;
+      this.formData$.next(formData);
+      this._notification.create('success', '', 'Профиль успешно обновлен!', {
+        nzDuration: 30000,
+      });
     }
   }
 }
