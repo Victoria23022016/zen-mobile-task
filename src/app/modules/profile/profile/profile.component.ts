@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileValidators } from './profile.validators';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileData } from 'src/app/models/models';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
   selector: 'app-profile',

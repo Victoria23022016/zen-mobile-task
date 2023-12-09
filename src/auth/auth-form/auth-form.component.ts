@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthFormValidators } from './auth-form.validators';
+import { AuthFormData } from './auth.models';
 
 @Component({
   selector: 'app-auth-form',
@@ -12,11 +13,11 @@ import { AuthFormValidators } from './auth-form.validators';
 })
 export class AuthFormComponent {
   form: FormGroup;
-  formData: Params;
-  auth: boolean;
+  formData: AuthFormData;
+  auth: boolean; //удлаить???
 
   constructor(
-    public _authService: AuthService,
+    private readonly _authService: AuthService,
     private readonly _router: Router,
     private readonly _notification: NzNotificationService
   ) {}
@@ -41,5 +42,6 @@ export class AuthFormComponent {
       this._notification.create('warning', '', 'Регистрация не прошла!');
     }
     this.form.reset();
+    console.log(window.localStorage);
   }
 }

@@ -19,6 +19,6 @@ const routes = [
     // RouterModule.forRoot(routes),
   ],
   exports: [],
-  providers: [AuthModule], //убрать?
+  providers: [AuthService],
 })
 export class AuthModule {}
