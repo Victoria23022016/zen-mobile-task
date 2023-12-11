@@ -4,6 +4,9 @@ import { AuthService } from './auth.service';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 const routes = [
   { path: 'auth', component: AuthFormComponent },
@@ -11,14 +14,16 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [AuthFormComponent],
+  declarations: [AuthFormComponent, LoginComponent],
   imports: [
     CommonModule,
+    NzFormModule,
+    NzInputModule,
     FormsModule,
     ReactiveFormsModule,
-    // RouterModule.forRoot(routes),
+    RouterModule.forChild([{ path: '', component: AuthFormComponent }]),
   ],
-  exports: [],
+  exports: [RouterModule],
   providers: [AuthService],
 })
 export class AuthModule {}

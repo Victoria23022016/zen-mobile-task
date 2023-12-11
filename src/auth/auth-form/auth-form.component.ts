@@ -14,7 +14,6 @@ import { AuthFormData } from './auth.models';
 export class AuthFormComponent {
   form: FormGroup;
   formData: AuthFormData;
-  auth: boolean; //удлаить???
 
   constructor(
     private readonly _authService: AuthService,

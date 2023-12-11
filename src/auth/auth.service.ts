@@ -29,4 +29,13 @@ export class AuthService {
     const roles = ['user1', 'user2', 'user3', 'user4', 'user5'];
     return roles[Math.round(Math.random() * (roles.length - 1))];
   }
+
+  logIn(formData: AuthFormData): void {
+    const user = window.localStorage.getItem(`${formData.email}`);
+    console.log(user);
+    console.log(window.localStorage);
+    //проверка: существования юзера, его пароля, замена свойства логин на тру!!!
+    //     localStorage.setItem('itemKey', JSON.stringify(yourObject));
+    // var item = JSON.parse(localStorage.getItem('itemKey'));
+  }
 }

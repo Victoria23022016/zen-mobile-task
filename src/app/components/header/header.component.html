@@ -7,12 +7,7 @@
         <a class="text text_linked" href="{{ webSite }}">Go to profile</a>
       </div>
 
-      <ng-container *ngIf="profileDataError">
-        <div class="message message_state">
-          <button class="button message__button text_small">X</button>
-          <p class="text">Profile has not been updated</p>
-        </div>
-      </ng-container>
+      <button class="button" (click)="logout()">Logout</button>
     </div>
   </div>
 </header>

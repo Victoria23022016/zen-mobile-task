@@ -1,0 +1,73 @@
+<div class="container">
+  <h1 class="text text_large">Log in:</h1>
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    class="form form_auth"
+    (ngSubmit)="submitForm()"
+  >
+    <nz-form-item>
+      <nz-form-control
+        nzErrorTip="Please input your username!"
+        class="form__control"
+      >
+        <label class="text">Email:</label>
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type="text"
+            nz-input
+            formControlName="email"
+            placeholder="Username"
+            class="form__input"
+          />
+        </nz-input-group>
+        <ng-container
+          *ngIf="
+            validateForm.get('email')?.invalid &&
+            validateForm.get('email')?.touched
+          "
+        >
+          <span class="text text_small form__error"
+            >You need to fiil the graph!</span
+          >
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <label class="text">Password:</label>
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Password"
+            class="form__input"
+          />
+        </nz-input-group>
+        <ng-container
+          *ngIf="
+            validateForm.get('password')?.invalid &&
+            validateForm.get('password')?.touched
+          "
+        >
+          <span class="text text_small form__error"
+            >You need to fiil the graph!</span
+          >
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="12"></div>
+    </div>
+    <button
+      nz-button
+      class="button form__button"
+      [disabled]="validateForm.invalid"
+    >
+      Log in
+    </button>
+  </form>
+  <p class="text text_small">Or make a registration:</p>
+  <button class="button form__button" [routerLink]="['/auth']">Register</button>
+</div>

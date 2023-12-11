@@ -20,4 +20,8 @@ export class HeaderComponent {
   lastName: string = '-';
   webSite: string = '-';
   profileDataError: boolean = false;
+
+  logout(): void {
+    //поменять статус login у юзера, и сделать редирект на логин
+  }
 }

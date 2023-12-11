@@ -137,25 +137,3 @@
   width: 100px;
   align-self: center;
 }
-
-.message {
-  background: var(--background);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  padding: 8px;
-}
-
-.message_state {
-  width: 180px;
-  height: 70px;
-}
-
-.message__button {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  justify-content: center;
-  align-self: flex-end;
-}
