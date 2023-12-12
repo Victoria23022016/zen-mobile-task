@@ -12,7 +12,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 export class ProfileComponent implements OnInit {
   form: FormGroup;
   formData: ProfileData;
-  email: string | null = window.localStorage.key(0);
+  email: string | null = JSON.parse(window.localStorage['currentUser']).email;
 
   constructor(private readonly _profileService: ProfileService) {}
 

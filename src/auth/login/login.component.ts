@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  //NonNullableFormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthFormData } from '../auth-form/auth.models';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +13,10 @@ export class LoginComponent {
   validateForm: FormGroup;
   formData: AuthFormData;
 
-  constructor(private readonly _authService: AuthService) {}
-
-  // constructor(private fb: NonNullableFormBuilder) {}
+  constructor(
+    private readonly _authService: AuthService,
+    private readonly _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = new FormGroup({
@@ -29,8 +26,14 @@ export class LoginComponent {
   }
 
   submitForm(): void {
-    console.log('submit', this.validateForm.value);
     this.formData = { ...this.validateForm.value };
     this._authService.logIn(this.formData);
+    if (this._authService.checkCurrentUser()) {
+      this._router.navigate(['/main/home']);
+    }
+  }
+
+  logOut(): void {
+    this._authService.logOut();
   }
 }

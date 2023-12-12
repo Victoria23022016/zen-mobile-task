@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { AuthService } from './auth.service';
 
-@Injectable({ providedIn: 'root' }) //переделать на authModule
+@Injectable()
 export class AuthGuard {
   constructor(private readonly _authService: AuthService) {}
 

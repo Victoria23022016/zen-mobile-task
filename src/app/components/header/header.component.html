@@ -7,7 +7,9 @@
         <a class="text text_linked" href="{{ webSite }}">Go to profile</a>
       </div>
 
-      <button class="button" (click)="logout()">Logout</button>
+      <button class="button" [routerLink]="['/login']">
+        Go to Login/Logout
+      </button>
     </div>
   </div>
 </header>

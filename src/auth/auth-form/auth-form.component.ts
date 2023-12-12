@@ -30,6 +30,9 @@ export class AuthFormComponent {
       ]),
       password: new FormControl('', Validators.required),
     });
+    if (this._authService.checkCurrentUser()) {
+      this._router.navigate(['/main/home']);
+    }
   }
 
   submit(): void {
@@ -41,6 +44,5 @@ export class AuthFormComponent {
       this._notification.create('warning', '', 'Регистрация не прошла!');
     }
     this.form.reset();
-    console.log(window.localStorage);
   }
 }

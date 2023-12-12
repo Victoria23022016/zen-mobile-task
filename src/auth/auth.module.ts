@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { AuthGuard } from './auth.guard';
 
 const routes = [
   { path: 'auth', component: AuthFormComponent },
@@ -24,6 +25,6 @@ const routes = [
     RouterModule.forChild([{ path: '', component: AuthFormComponent }]),
   ],
   exports: [RouterModule],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
 })
 export class AuthModule {}
