@@ -30,8 +30,6 @@ import { RouterModule } from '@angular/router';
     AuthModule,
     RouterModule.forChild([{ path: '', component: MainPageComponent }]),
   ],
-  exports: [RouterModule],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

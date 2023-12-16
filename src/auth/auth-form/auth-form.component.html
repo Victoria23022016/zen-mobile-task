@@ -7,8 +7,20 @@
       <ng-container
         *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
       >
-        <span class="text text_small form__error"
-          >This email is already booked!</span
+        <span
+          *ngIf="form.get('email')?.errors?.['email']"
+          class="text text_small form__error"
+          >Email is not correct</span
+        >
+        <span
+          *ngIf="form.get('email')?.errors?.['required']"
+          class="text text_small form__error"
+          >The graph should be filled</span
+        >
+        <span
+          *ngIf="form.get('email')?.errors?.['bookedEmail']"
+          class="text text_small form__error"
+          >This email is already booked</span
         >
       </ng-container>
     </div>

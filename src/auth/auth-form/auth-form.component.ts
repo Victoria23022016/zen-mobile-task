@@ -39,8 +39,11 @@ export class AuthFormComponent {
     this.formData = { ...this.form.value };
     this._authService.addToLocalStorage(this.formData);
     if (this._authService.checkAuth()) {
-      this._router.navigate(['/main']);
+      console.log('yes', window.localStorage); //убрать
+      this._router.navigate(['/main/home']);
+      console.log(this._authService.checkAuth()); //убрать
     } else {
+      console.log('no', window.localStorage); //убрать
       this._notification.create('warning', '', 'Регистрация не прошла!');
     }
     this.form.reset();

@@ -10,12 +10,13 @@ export class AuthService {
   constructor(private readonly _notification: NzNotificationService) {}
 
   addToLocalStorage(formData: AuthFormData): void {
-    if (this.checkFormValues(formData)) {
-      formData.role = this.makeUserRole();
+    if (this._checkFormValues(formData)) {
+      formData.role = this._makeUserRole();
       if (window.localStorage['users']) {
         let parcedUsers = JSON.parse(window.localStorage['users']);
         parcedUsers[`${formData.email}`] = formData;
         window.localStorage['users'] = JSON.stringify(parcedUsers);
+        this.auth$.next(true);
       } else {
         window.localStorage['users'] = JSON.stringify({
           [`${formData.email}`]: formData,
@@ -31,17 +32,15 @@ export class AuthService {
   }
 
   logIn(formData: AuthFormData): void {
-    if (this.checkUser(formData)) {
-      if (this.checkPassword(formData)) {
-        window.localStorage['currentUser'] = JSON.stringify(formData);
-        this.auth$.next(true);
-        this._notification.info('', 'You logged in!');
-      }
+    if (this._checkUser(formData) && this._checkPassword(formData)) {
+      window.localStorage['currentUser'] = JSON.stringify(formData);
+      this.auth$.next(true);
+      this._notification.info('', 'You logged in!');
     }
   }
 
   logOut(): void {
-    window.localStorage['currentUser'] = JSON.stringify(null);
+    window.localStorage['currentUser'] = null;
     this.auth$.next(false);
     this._notification.info('', 'You logged out!');
   }
@@ -50,16 +49,16 @@ export class AuthService {
     return JSON.parse(window.localStorage['currentUser']) ? true : false;
   }
 
-  private checkFormValues(formData: AuthFormData): boolean {
+  private _checkFormValues(formData: AuthFormData): boolean {
     return formData.password.length === 1 ? false : true;
   }
 
-  private makeUserRole(): string {
+  private _makeUserRole(): string {
     const roles = ['user1', 'user2', 'user3', 'user4', 'user5'];
     return roles[Math.round(Math.random() * (roles.length - 1))];
   }
 
-  private checkUser(formData: AuthFormData): boolean {
+  private _checkUser(formData: AuthFormData): boolean {
     if (JSON.parse(window.localStorage['users'])[`${formData.email}`]) {
       return true;
     } else {
@@ -68,7 +67,7 @@ export class AuthService {
     }
   }
 
-  private checkPassword(formData: AuthFormData): boolean {
+  private _checkPassword(formData: AuthFormData): boolean {
     const user = JSON.parse(window.localStorage['users'])[`${formData.email}`];
     if (user.password === formData.password) {
       return true;

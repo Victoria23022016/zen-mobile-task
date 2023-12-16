@@ -5,7 +5,7 @@ export class AuthFormValidators {
     control: AbstractControl
   ): { [key: string]: boolean } | null {
     if (control.value) {
-      if (window.localStorage.getItem(`${control.value}`)) {
+      if (JSON.parse(window.localStorage['users'])[`${control.value}`]) {
         return { bookedEmail: true };
       }
     }
