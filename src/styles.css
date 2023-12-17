@@ -14,6 +14,14 @@
   margin: 0 auto;
 }
 
+.container_small {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
 .content {
   padding-left: 50px;
 }
@@ -38,6 +46,10 @@
 .header__info {
   display: flex;
   flex-direction: column;
+}
+
+.header__button {
+  height: 30px;
 }
 
 .text {

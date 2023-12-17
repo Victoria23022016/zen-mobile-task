@@ -14,8 +14,7 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    console.log('guard', this._authService.checkAuth());
-    return this._authService.checkAuth();
+    return this._authService.checkCurrentUser();
   }
 }
 

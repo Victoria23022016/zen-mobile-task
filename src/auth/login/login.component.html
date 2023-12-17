@@ -68,10 +68,14 @@
       Log in
     </button>
   </form>
-  <p class="text text_small">Make a registration:</p>
-  <button class="button form__button" [routerLink]="['/auth']">Register</button>
-  <p class="text text_small">Log out:</p>
-  <button nz-button class="button form__button" (click)="logOut()">
-    Log out
-  </button>
+  <div class="container_small">
+    <p class="text">Make a registration:</p>
+    <button class="button form__button" [routerLink]="['/auth']">
+      Register
+    </button>
+    <p class="text">Log out:</p>
+    <button nz-button class="button form__button" (click)="logOut()">
+      Log out
+    </button>
+  </div>
 </div>
