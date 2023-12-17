@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { AuthFormData } from './auth-form/auth.models';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable()
 export class AuthService {
-  auth$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
   constructor(private readonly _notification: NzNotificationService) {}
 
   addToLocalStorage(formData: AuthFormData): void {
@@ -22,31 +19,24 @@ export class AuthService {
         });
       }
       window.localStorage['currentUser'] = JSON.stringify(formData);
-      this.auth$.next(true);
     }
   }
 
   logIn(formData: AuthFormData): void {
     if (this._checkUser(formData) && this._checkPassword(formData)) {
       window.localStorage['currentUser'] = JSON.stringify(formData);
-      this.auth$.next(true);
       this._notification.info('', 'You logged in!');
     }
   }
 
   logOut(): void {
     window.localStorage['currentUser'] = null;
-    this.auth$.next(false);
     this._notification.info('', 'You logged out!');
-  }
-
-  checkAuth(): boolean {
-    return this.auth$.getValue() ? true : false;
   }
 
   checkCurrentUser(): boolean {
     return JSON.parse(window.localStorage['currentUser']) ? true : false;
-  } //это точно мне нужно??
+  }
 
   private _checkFormValues(formData: AuthFormData): boolean {
     return formData.password.length === 1 ? false : true;
