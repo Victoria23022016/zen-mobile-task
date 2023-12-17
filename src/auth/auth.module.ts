@@ -9,11 +9,6 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { AuthGuard } from './auth.guard';
 
-const routes = [
-  { path: 'auth', component: AuthFormComponent },
-  { path: '**', redirectTo: 'auth' },
-];
-
 @NgModule({
   declarations: [AuthFormComponent, LoginComponent],
   imports: [

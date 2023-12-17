@@ -22,6 +22,7 @@ export class AuthFormComponent {
   ) {}
 
   ngOnInit(): void {
+    console.log(window.localStorage);
     this.form = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -40,10 +41,9 @@ export class AuthFormComponent {
     this._authService.addToLocalStorage(this.formData);
     if (this._authService.checkAuth()) {
       console.log('yes', window.localStorage); //убрать
-      this._router.navigate(['/main/home']);
       console.log(this._authService.checkAuth()); //убрать
+      this._router.navigate(['/main/home']);
     } else {
-      console.log('no', window.localStorage); //убрать
       this._notification.create('warning', '', 'Регистрация не прошла!');
     }
     this.form.reset();

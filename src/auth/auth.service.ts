@@ -16,7 +16,6 @@ export class AuthService {
         let parcedUsers = JSON.parse(window.localStorage['users']);
         parcedUsers[`${formData.email}`] = formData;
         window.localStorage['users'] = JSON.stringify(parcedUsers);
-        this.auth$.next(true);
       } else {
         window.localStorage['users'] = JSON.stringify({
           [`${formData.email}`]: formData,
@@ -25,10 +24,6 @@ export class AuthService {
       window.localStorage['currentUser'] = JSON.stringify(formData);
       this.auth$.next(true);
     }
-  }
-
-  checkAuth(): boolean {
-    return this.auth$.getValue() ? true : false;
   }
 
   logIn(formData: AuthFormData): void {
@@ -45,9 +40,13 @@ export class AuthService {
     this._notification.info('', 'You logged out!');
   }
 
+  checkAuth(): boolean {
+    return this.auth$.getValue() ? true : false;
+  }
+
   checkCurrentUser(): boolean {
     return JSON.parse(window.localStorage['currentUser']) ? true : false;
-  }
+  } //это точно мне нужно??
 
   private _checkFormValues(formData: AuthFormData): boolean {
     return formData.password.length === 1 ? false : true;

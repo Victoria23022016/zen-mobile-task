@@ -2,19 +2,18 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
-import { takeUntil } from 'rxjs';
 import { ProfileData } from 'src/app/models/models';
 import { ProfileService } from 'src/app/services/profile.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPageComponent implements OnInit, OnDestroy {
+export class MainPageComponent implements OnInit {
   profileData: ProfileData;
   profileDataUpdate: boolean;
 
@@ -25,11 +24,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._profileService.formData$
-      //.pipe()
+      .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((profileData) => (this.profileData = profileData));
-  }
-
-  ngOnDestroy(): void {
-    this._profileService.formData$.unsubscribe();
   }
 }
